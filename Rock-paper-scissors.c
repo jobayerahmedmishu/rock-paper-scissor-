@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include<stdlib.h>
 #include<time.h>
 #include<unistd.h>
@@ -14,11 +13,11 @@ int main()
 {
     char res;
     srand(time(NULL));
-    
+
     interface();
     scanf("%c",&res);
-    system("clear");
-    
+    system("cls");
+
     if(res == 'p')
     {
         while(1)
@@ -26,18 +25,18 @@ int main()
             player_move();
             computer_move();
             check_win();
-            
+
             printf("\n3");
             sleep(1);
             printf("\n2");
             sleep(1);
             printf("\n1");
             sleep(1);
-            
-            system("clear");
+
+            system("cls");
             printf("\n\n\tPlay again\n");
             sleep(1);
-            system("clear");
+            system("cls");
         }
     }
     else if(res == 'e')
@@ -80,7 +79,7 @@ void player_move()
 void computer_move()
 {
     computer = rand()%3+1;
-    
+
     printf("\n\tComputer : ");
     if(computer == 1)
     {
@@ -112,4 +111,3 @@ void check_win()
         printf("No winner\n");
     }
 }
-
