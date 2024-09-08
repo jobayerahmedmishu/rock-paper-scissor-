@@ -2,8 +2,13 @@
 #include<stdlib.h>
 #include<time.h>
 #include<unistd.h>
+#include<math.h>
 
-int player,computer;
+#define ROCK -1
+#define PAPER 0
+#define SCISSOR 1
+
+int player,computer, input;
 
 void interface();
 void player_move();
@@ -57,18 +62,21 @@ void interface()
 
 void player_move()
 {
-    printf("1-->Rock\n2-->Paper\n3-->scissors\n\n> ");
-    scanf("%d",&player);
-    if(player==1)
+    printf("1-->Rock\n2-->Scissor\n3-->Paper\n\n> ");
+    scanf("%d",&input);
+    if(input==1)
     {
+		player = ROCK;
         printf("\n\tYou : Rock\n");
     }
-    else if(player==2)
+    else if(input==2)
     {
+		player = SCISSOR;
         printf("\n\tYou : Paper\n");
     }
-    else if(player==3)
+    else if(input==3)
     {
+		player = PAPER;
         printf("\n\tYou : Scissors\n");
     }
     else
@@ -79,15 +87,17 @@ void player_move()
 
 void computer_move()
 {
-    computer = rand()%3+1;
+    input = rand()%3+1;
 
     printf("\n\tComputer : ");
-    if(computer == 1)
+    if(input == 1)
     {
+		computer = ROCK;
         printf("Rock\n");
     }
-    else if(computer==2)
+    else if(input==2)
     {
+		computer = SCISSOR;
         printf("Paper\n");
     }
     else
@@ -99,16 +109,16 @@ void computer_move()
 void check_win()
 {
     printf("\n\t");
-    if(player==1&&computer==2||player==2&&computer==3||player==3&&computer==1)
+	if(player == computer)
     {
-        printf("You lost\n");
+        printf("No winner\n");
     }
-    else if(player==2&&computer==1||player==3&&computer==2||player==1&&computer==3 )
+	else if(player - computer == 1 || player - computer == -2)
     {
         printf("You won\n");
     }
     else
     {
-        printf("No winner\n");
+		printf("You lose\n");
     }
 }
